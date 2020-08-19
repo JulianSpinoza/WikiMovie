@@ -11,4 +11,5 @@ package Aja;
  */
 public class AJa2 {
     
+    
 }
