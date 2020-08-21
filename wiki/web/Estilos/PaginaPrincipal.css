@@ -1,0 +1,140 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20/08/2020, 11:31:11 AM
+    Author     : USERS
+*/
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+#foto{
+    width: 100%;
+    height: 530px;
+    background-image: url(../Imagenes/PrincipalImage.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-top: 20px; 
+    margin-bottom: 60px
+}
+
+body{
+    background-image: url(../Imagenes/PrincipalImage.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;   
+}
+
+h1{
+    background-color: #EDEFF1;
+    margin: auto;
+    text-align: center;
+    margin-top: 172px;
+    opacity: 50%; 
+    font-size: 70px;
+    font-family: 'Galada', cursive;
+    
+}
+article{
+    margin: auto;
+    width: 690px;
+    background-color: #B9D3EB;
+    margin-top: 20px;
+    padding-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    
+}
+h3{
+    width: 740px;
+    height: 75px;
+    color: #424949;
+    text-align: center;
+    font-size: 50px;
+    background-color: #1ABC9C;
+    font-family: 'Merienda One', cursive;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px
+    
+}
+
+#imagen1{
+    width: 155px;
+    height: 250px;
+    margin-top: 25px;
+    background-image: url(../Imagenes/You.jpg);
+    background-size: contain;
+   
+}
+
+#imagen2{
+    width: 170px;
+    height: 250px;
+    background-image:url(../Imagenes/Jojo%20rabbit.jpg);
+    background-size: contain;
+    margin-top: 25px;
+}
+
+#imagen3{
+    width: 170px;
+    height: 250px;
+    background-image: url(../Imagenes/stranger%20things.jpg);
+    background-size: contain;
+    margin-top: 25px;
+}
+
+#imagen4{
+    width: 160px;
+    height: 250px;
+    background-image: url(../Imagenes/yo%20antes%20de%20ti.jpg);
+    background-size: contain;
+    margin-top: 25px;
+}
+
+#imagen5{
+    width: 170px;
+    height: 250px;
+    background-image: url(../Imagenes/Black%20mirror.jpg);
+    background-size: contain;
+    margin-top: 25px;
+}
+
+.contenido{
+    width: 450px;
+    text-align: justify;
+    margin-left: 25px; 
+    padding-top: 25px;
+    margin-bottom: 25px;
+    font-family: 'Lobster Two', cursive;
+    font-size: 20px;
+}
+
+.fondo{
+    width: 100%;
+    height: auto;
+    background-color: #F2D7D5;
+    padding-bottom: 20px;
+    padding-top:1;
+    margin-top: 20px
+}
+
+div{
+    width: 100%;
+    height: 48px;
+    background-color: #01101E;
+    margin-top: 60px;
+    padding-top: 47px;
+    text-align: center;
+    color: white;   
+}
