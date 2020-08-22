@@ -70,12 +70,6 @@ public class ComenzarSesion extends HttpServlet {
             out.println("<div class=\"vacio\">");
             out.println("<div id=\"logo\">");
             out.println("</div>");          
-            out.println("<div id=\"menu\">");
-            out.println("<form action=\"IniciarSesion\" method=\"post\">");
-            out.println("<input type=\"submit\" value=\"Registrarme\">");
-            out.println("<input type=\"submit\" value=\"Iniciar sesión\">");
-            out.println("</form>");
-            out.println("</div> "); 
             out.println("</div>");                     
             out.println("<div class=\"contenedor\">");           
             out.println("<section>");
