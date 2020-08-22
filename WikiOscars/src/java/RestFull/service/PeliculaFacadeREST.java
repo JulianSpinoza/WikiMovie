@@ -5,7 +5,7 @@
  */
 package RestFull.service;
 
-import EntityClassses.Pelicula;
+import entity.Pelicula;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author Yabito123
  */
 @Stateless
-@Path("entityclassses.pelicula")
+@Path("entity.pelicula")
 public class PeliculaFacadeREST extends AbstractFacade<Pelicula> {
 
     @PersistenceContext(unitName = "WikiOscarsPU")

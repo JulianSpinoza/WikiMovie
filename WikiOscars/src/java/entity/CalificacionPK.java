@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package EntityClassses;
+package entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -77,7 +77,7 @@ public class CalificacionPK implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.CalificacionPK[ idCalificacion=" + idCalificacion + ", idPeliculafk=" + idPeliculafk + " ]";
+        return "entity.CalificacionPK[ idCalificacion=" + idCalificacion + ", idPeliculafk=" + idPeliculafk + " ]";
     }
     
 }
