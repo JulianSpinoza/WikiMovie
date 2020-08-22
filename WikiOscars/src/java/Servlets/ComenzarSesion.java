@@ -5,8 +5,10 @@
  */
 package Servlets;
 
+import RestFull.service.CalificacionFacadeREST;
 import entity.Usuario;
 import RestFull.service.UsuarioFacadeREST;
+import entity.Calificacion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -21,8 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "IniciarSesion", urlPatterns = {"/IniciarSesion"})
 public class ComenzarSesion extends HttpServlet {
-    String correo,password,id,nickname;
-    
+  
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,11 +33,14 @@ public class ComenzarSesion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-         public String Correo,password1,Nickname;
-         public static int idReciente;
+    public String correo,password,nickname;
+    public String invisible[][] = new String [2][1];
+    public static int idReciente;
         
-      UsuarioFacadeREST useremf= new UsuarioFacadeREST();
-      public int comprobar(String comprocorreo,String compropassword){
+    public UsuarioFacadeREST useremf = new UsuarioFacadeREST();
+    public CalificacionFacadeREST calificaemf = new CalificacionFacadeREST();
+    
+    public int comprobar(String comprocorreo,String compropassword){
               int a=0;
               for(int i=1;i<=useremf.count();i++){
                   Usuario user = new Usuario(i);
@@ -46,10 +50,11 @@ public class ComenzarSesion extends HttpServlet {
                   }
               }
               return a;   
-        }
-      public void setidReciente(){
-          idReciente =(useremf.count());
-      }
+    }
+    
+    public void setidReciente(){
+        idReciente =(useremf.count());
+    }
      
       
       
@@ -215,7 +220,7 @@ public class ComenzarSesion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            password1=request.getParameter("password");
+            password=request.getParameter("password");
             nickname=request.getParameter("nickname");
             
             
@@ -243,8 +248,14 @@ public class ComenzarSesion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         setidReciente();
-        useremf.create(new Usuario(idReciente++,request.getParameter("correo"),request.getParameter("password"),request.getParameter("nickname")));
+        useremf.create(new Usuario(idReciente++,request.getParameter("correo"),
+                request.getParameter("password"),request.getParameter("nickname")));
         
+        for(int i=0;i<5;i++){
+            Calificacion aux = new Calificacion(0,i);
+            aux.setValor(false);
+            calificaemf.create(aux);
+        }
         processRequest(request, response);
     }
 
