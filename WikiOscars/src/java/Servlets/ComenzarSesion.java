@@ -63,10 +63,10 @@ public class ComenzarSesion extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
+            out.println("<!DOCTYPE html>");            
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>oscars</title>");
+            out.println("<title>Oscars</title>");
             out.println("<meta charset=\"UTF-8\">");
             out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
             out.println("<link rel=\"stylesheet\" href=\"Estilos/PrincipalPage.css\">");
@@ -74,22 +74,22 @@ public class ComenzarSesion extends HttpServlet {
             out.println("<body>");
             out.println("<div class=\"vacio\">");
             out.println("<div id=\"logo\">");
-            out.println("</div>");          
-            out.println("</div>");                     
-            out.println("<div class=\"contenedor\">");           
+            out.println("</div>");
+            out.println("</div>");
+            out.println("<div class=\"contenedor\">  ");
             out.println("<section>");
             out.println("<h2>");
             out.println("Mejores Peliculas Nominadas 2020");
             out.println("</h2>");
             out.println("<article>");
             out.println("<h3>");
-            out.println("Once Upon a Time in Hollywood");
+            out.println("nce Upon a Time in Hollywood");
             out.println("</h3>");
             out.println("<p id=\"imagen1\">");
             out.println("</p>");
-            out.println("<input class=\"btnOUTH\" type=\"button\" value=\"Visto\">");
-            out.println("<input class=\"btnOUTH\" type=\"button\" value=\"Me gusta\">");
-            out.println("<input class=\"btnOUTH\" type=\"button\" value=\"No me gusta\">");
+            out.println("<form action=\"MeGusta\" method=\"post\">");
+            out.println("<input type=\"submit\" value=\"Me gusta Once Upon a Time in Hollywood\" name=\"OUTH\">");
+            out.println("</form>");
             out.println("<h4>");
             out.println("Sinopsis");
             out.println("</h4>");
@@ -104,9 +104,9 @@ public class ComenzarSesion extends HttpServlet {
             out.println("</h3>");
             out.println("<p id=\"imagen2\">");
             out.println("</p>");
-            out.println("<input class=\"btnJJR\" type=\"button\" value=\"Visto\">");
-            out.println("<input class=\"btnJJR\" type=\"button\" value=\"Me gusta\">");
-            out.println("<input class=\"btnJJR\" type=\"button\" value=\"No me gusta\">");
+            out.println("<form action=\"MeGusta\" method=\"post\">");
+            out.println("<input type=\"submit\" value=\"Me gusta Jojo Rabbit\" name=\"JORT\">");
+            out.println("</form>");
             out.println("<h4>");
             out.println("Sinopsis");
             out.println("</h4>");
@@ -121,9 +121,9 @@ public class ComenzarSesion extends HttpServlet {
             out.println("</h3>");
             out.println("<p id=\"imagen3\">");
             out.println("</p>");
-            out.println("<input class=\"btnMS\" type=\"button\" value=\"Visto\">");
-            out.println("<input class=\"btnMS\" type=\"button\" value=\"Me gusta\">");
-            out.println("<input class=\"btnMS\" type=\"button\" value=\"No me gusta\">");
+            out.println("<form action=\"MeGusta\" method=\"post\">");
+            out.println("<input type=\"submit\" value=\"Me gusta Marriage Story\" name=\"MS\">");
+            out.println("</form>");
             out.println("<h4>");
             out.println("Sinopsis");
             out.println("</h4>");
@@ -138,9 +138,9 @@ public class ComenzarSesion extends HttpServlet {
             out.println("</h3>");
             out.println("<p id=\"imagen4\">");
             out.println("</p>");
-            out.println("<input class=\"btnIMAN\" type=\"button\" value=\"Visto\">");
-            out.println("<input class=\"btnIMAN\" type=\"button\" value=\"Me gusta\">");
-            out.println("<input class=\"btnIMAN\" type=\"button\" value=\"No me gusta\">");
+            out.println("<form action=\"MeGusta\" method=\"post\">");
+            out.println("<input type=\"submit\" value=\"Me gusta The Irishman\" name=\"IRIS\">");
+            out.println("</form>");
             out.println("<h4>");
             out.println("Sinopsis");
             out.println("</h4>");
@@ -156,9 +156,9 @@ public class ComenzarSesion extends HttpServlet {
             out.println("</h3>");
             out.println("<p id=\"imagen5\">");
             out.println("</p>");
-            out.println("<input class=\"btnPA\" type=\"button\" value=\"Visto\">");
-            out.println("<input class=\"btnPA\" type=\"button\" value=\"Me gusta\">");
-            out.println("<input class=\"btnPA\" type=\"button\" value=\"No me gusta\">");
+            out.println("<form action=\"MeGusta\" method=\"post\">");
+            out.println("<input type=\"submit\" value=\"Me gusta Parasite\" name=\"PARIS\">");
+            out.println("</form>");
             out.println("<h4>");
             out.println("Sinopsis");
             out.println("</h4>");
@@ -166,10 +166,45 @@ public class ComenzarSesion extends HttpServlet {
             out.println("La codicia, la discriminación de clase y un intruso misterioso amenazan la relación simbiótica recién formada entre la acaudalada familia Park y el indigente clan Kim.");
             out.println("</p>");
             out.println("</article>");
-            out.println("</section>   ");
+            out.println("</section>");
+
+            out.println("<footer>");
+            out.println("<table>");
+            out.println("<tr>");
+            out.println("<td class=\"centrar\"><label>Registrarme</label></td>");
+            out.println("<td class=\"centrar\"><label>Iniciar Sesión</label></td>");
+            out.println("</tr>");
+            out.println("<tr>");
+            out.println("<td><label>Nickname: </label><input type=\"text\"></td>");
+            out.println("<td><label>Nickname: </label><input type=\"text\"></td>");
+            out.println("</tr>");
+            out.println("<tr>");
+            out.println("<td><label>Correo: </label><input type=\"text\"></td>");
+            out.println("<td><label>Contraseña: </label><input type=\"text\"></td>");
+            out.println("</tr>");
+            out.println("<tr>");
+            out.println("<td><label>Contraseña: </label><input type=\"text\"></td>");
+            out.println("<td></td>");
+            out.println("</tr>");
+            out.println("<tr>");
+            out.println("<td class=\"centrar\">");
+            out.println("<form action=\"IniciarSesion\" method=\"post\">");
+            out.println("<input type=\"submit\" value=\"Registrarme\">");
+            out.println("</form>");
+            out.println("</td>");
+            out.println("<td class=\"centrar\">");
+            out.println("<form action=\"IniciarSesion\" method=\"get\">");
+            out.println("<input type=\"submit\" value=\"Iniciar Sesión\">");
+            out.println("</form>");
+            out.println("</td>");
+            out.println("</tr>");
+            out.println("</table>");
+            out.println("</footer>");
+
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
+  
         }
     }
 
