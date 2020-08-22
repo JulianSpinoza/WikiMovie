@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author USERS
  */
 @WebServlet(name = "IniciarSesion", urlPatterns = {"/IniciarSesion"})
-public class IniciarSesion extends HttpServlet {
+public class ComenzarSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
