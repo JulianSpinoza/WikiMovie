@@ -11,6 +11,7 @@ and open the template in the editor.
 *{
     padding: 0px;
     margin: 0px;
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
 }
 
 body{
@@ -20,17 +21,13 @@ body{
     background-attachment: fixed;   
 }
 
-body *{
-    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
-}
-
 .vacio {
     width: 100%;
     height: 550px;
 }
 .contenedor{
     width: 100%;
-    height: 5000px;
+    height: 4500px;
     background-color: black;
 }
 
@@ -122,6 +119,7 @@ article *{
     background-image: url(../Imagenes/TheIrishman.jpg);
     background-size: contain;
     background-repeat: no-repeat;
+    
 }
 
 #imagen5{
@@ -130,4 +128,27 @@ article *{
     background-image: url(../Imagenes/Parasite.jpg);
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+table{
+    margin-left: 40%;
+    margin-right: 20%;
+    background-color: #B89956; 
+}
+
+td{
+    color:white;
+    padding: 10px;
+    border-left-color: #B89951;
+    border-right-color: #B89951;
+}
+
+label{
+    margin-right: 15px;
+}
+
+.centrar *{
+    margin-left: 30px;
+    padding: 5px;
+    font-weight: bolder;
 }

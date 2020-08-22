@@ -193,8 +193,6 @@ public class ComenzarSesion extends HttpServlet {
             
         
         
-        
-        
        
         processRequest(request, response);
     }

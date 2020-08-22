@@ -16,10 +16,8 @@ and open the template in the editor.
             <div id="logo">
             </div>
             <div id="menu">
-                <form action="IniciarSesion" method="post"> 
                 <input type="submit" value="Registrarme">
                 <input type="submit" value="Iniciar sesión">
-                </form>
             </div> 
         </div>
         <div class="contenedor">  
@@ -33,9 +31,10 @@ and open the template in the editor.
                 </h3>
                 <p id="imagen1">
                 </p>
-                <input class="btnOUTH" type="button" value="Visto">
-                <input class="btnOUTH" type="button" value="Me gusta">
-                <input class="btnOUTH" type="button" value="No me gusta">
+                <form action="MeGusta" method="post">
+                <input class="btnOUTH" type="submit" value="Me gusta" name="OUTH">
+                </form>
+                <input class="btnOUTH" type="submit" value="No me gusta">
                 <h4>
                 Sinopsis
                 </h4>
@@ -50,7 +49,6 @@ and open the template in the editor.
                 </h3>
                 <p id="imagen2">
                 </p>
-                <input class="btnJJR" type="button" value="Visto">
                 <input class="btnJJR" type="button" value="Me gusta">
                 <input class="btnJJR" type="button" value="No me gusta">
                 <h4>
@@ -67,7 +65,6 @@ and open the template in the editor.
                 </h3>
                 <p id="imagen3">
                 </p>
-                <input class="btnMS" type="button" value="Visto">
                 <input class="btnMS" type="button" value="Me gusta">
                 <input class="btnMS" type="button" value="No me gusta">
                 <h4>
@@ -84,9 +81,8 @@ and open the template in the editor.
                 </h3>
                 <p id="imagen4">
                 </p>
-                <input class="btnIMAN" type="button" value="Visto">
-                <input class="btnIMAN" type="button" value="Me gusta">
-                <input class="btnIMAN" type="button" value="No me gusta">
+                <input type="button" value="Me gusta">
+                <input type="button" value="No me gusta">
                 <h4>
                 Sinopsis
                 </h4>
@@ -102,7 +98,6 @@ and open the template in the editor.
                 </h3>
                 <p id="imagen5">
                 </p>
-                <input class="btnPA" type="button" value="Visto">
                 <input class="btnPA" type="button" value="Me gusta">
                 <input class="btnPA" type="button" value="No me gusta">
                 <h4>
@@ -113,6 +108,40 @@ and open the template in the editor.
                 </p>
             </article>
         </section>
+            
+        <footer>
+            <table>
+                <tr>
+                    <td class="centrar"><label>Registrarme</label></td>
+                    <td class="centrar"><label>Iniciar Sesión</label></td>
+                </tr>
+                <tr>
+                    <td><label>Nickname: </label><input type="text"></td>
+                    <td><label>Nickname: </label><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><label>Correo: </label><input type="text"></td>
+                    <td><label>Contraseña: </label><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><label>Contraseña: </label><input type="text"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="centrar">
+                        <form action="IniciarSesion" method="post">
+                        <input type="submit" value="Registrarme">
+                        </form>
+                    </td>
+                    <td class="centrar">
+                        <form action="IniciarSesion" method="get">
+                        <input type="submit" value="Iniciar Sesión">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </footer>
+            
         </div>
     </body>
 </html>
