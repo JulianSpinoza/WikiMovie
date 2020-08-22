@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package EntityClassses;
+package entity;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -15,8 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,11 +33,8 @@ public class Calificacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected CalificacionPK calificacionPK;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "Valor")
-    private String valor;
+    private Boolean valor;
     @JoinColumn(name = "idPeliculafk", referencedColumnName = "idPelicula", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Pelicula pelicula;
@@ -55,11 +49,6 @@ public class Calificacion implements Serializable {
         this.calificacionPK = calificacionPK;
     }
 
-    public Calificacion(CalificacionPK calificacionPK, String valor) {
-        this.calificacionPK = calificacionPK;
-        this.valor = valor;
-    }
-
     public Calificacion(int idCalificacion, int idPeliculafk) {
         this.calificacionPK = new CalificacionPK(idCalificacion, idPeliculafk);
     }
@@ -72,11 +61,11 @@ public class Calificacion implements Serializable {
         this.calificacionPK = calificacionPK;
     }
 
-    public String getValor() {
+    public Boolean getValor() {
         return valor;
     }
 
-    public void setValor(String valor) {
+    public void setValor(Boolean valor) {
         this.valor = valor;
     }
 
@@ -118,7 +107,7 @@ public class Calificacion implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.Calificacion[ calificacionPK=" + calificacionPK + " ]";
+        return "entity.Calificacion[ calificacionPK=" + calificacionPK + " ]";
     }
     
 }

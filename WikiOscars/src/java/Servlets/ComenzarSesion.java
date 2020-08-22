@@ -5,7 +5,7 @@
  */
 package Servlets;
 
-import EntityClassses.Usuario;
+import entity.Usuario;
 import RestFull.service.UsuarioFacadeREST;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,7 +33,7 @@ public class ComenzarSesion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
          public String Correo,password1,Nickname;
-         public static int idUser;
+         public static int idReciente;
         
       UsuarioFacadeREST useremf= new UsuarioFacadeREST();
       public int comprobar(String comprocorreo,String compropassword){
@@ -47,8 +47,8 @@ public class ComenzarSesion extends HttpServlet {
               }
               return a;   
         }
-      public void getidReciente(){
-          idUser =(useremf.count());
+      public void setidReciente(){
+          idReciente =(useremf.count());
       }
      
       
@@ -186,9 +186,14 @@ public class ComenzarSesion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            password1=request.getParameter("password");
+            nickname=request.getParameter("nickname");
             
-
-           
+            
+            
+            
+        
+        
            
             
         
@@ -208,6 +213,9 @@ public class ComenzarSesion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        setidReciente();
+        useremf.create(new Usuario(idReciente++,request.getParameter("correo"),request.getParameter("password"),request.getParameter("nickname")));
+        
         processRequest(request, response);
     }
 

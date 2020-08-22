@@ -5,8 +5,8 @@
  */
 package RestFull.service;
 
-import EntityClassses.Calificacion;
-import EntityClassses.CalificacionPK;
+import entity.Calificacion;
+import entity.CalificacionPK;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,7 +27,7 @@ import javax.ws.rs.core.PathSegment;
  * @author Yabito123
  */
 @Stateless
-@Path("entityclassses.calificacion")
+@Path("entity.calificacion")
 public class CalificacionFacadeREST extends AbstractFacade<Calificacion> {
 
     @PersistenceContext(unitName = "WikiOscarsPU")
@@ -41,7 +41,7 @@ public class CalificacionFacadeREST extends AbstractFacade<Calificacion> {
          * it is ignored in the following code.
          * Matrix parameters are used as field names to build a primary key instance.
          */
-        EntityClassses.CalificacionPK key = new EntityClassses.CalificacionPK();
+        entity.CalificacionPK key = new entity.CalificacionPK();
         javax.ws.rs.core.MultivaluedMap<String, String> map = pathSegment.getMatrixParameters();
         java.util.List<String> idCalificacion = map.get("idCalificacion");
         if (idCalificacion != null && !idCalificacion.isEmpty()) {
@@ -75,7 +75,7 @@ public class CalificacionFacadeREST extends AbstractFacade<Calificacion> {
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") PathSegment id) {
-        EntityClassses.CalificacionPK key = getPrimaryKey(id);
+        entity.CalificacionPK key = getPrimaryKey(id);
         super.remove(super.find(key));
     }
 
@@ -83,7 +83,7 @@ public class CalificacionFacadeREST extends AbstractFacade<Calificacion> {
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Calificacion find(@PathParam("id") PathSegment id) {
-        EntityClassses.CalificacionPK key = getPrimaryKey(id);
+        entity.CalificacionPK key = getPrimaryKey(id);
         return super.find(key);
     }
 
