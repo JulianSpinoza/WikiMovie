@@ -5,9 +5,10 @@
  */
 package Servlets;
 
-import RestFull.service.CalificacionFacadeREST;
+import Datos.UsuarioDAO;
+import service.CalificacionFacadeREST;
 import entity.Usuario;
-import RestFull.service.UsuarioFacadeREST;
+import service.UsuarioFacadeREST;
 import entity.Calificacion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -224,15 +225,7 @@ public class ComenzarSesion extends HttpServlet {
             nickname=request.getParameter("nickname");
             
             
-            
-            
-        
-        
-           
-            
-        
-        
-       
+
         processRequest(request, response);
     }
 
@@ -247,7 +240,23 @@ public class ComenzarSesion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        setidReciente();
+        
+        String correo = request.getParameter("correo");
+        String password = request.getParameter("password");
+        String nickname = request.getParameter("nickname");
+        
+        
+        
+        Usuario usuario = new Usuario();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        usuario.setCorreo(correo);
+        usuario.setContraseña(password);
+        usuario.setNickname(nickname);
+        
+        int idUsuarioCreado = usuarioDAO.CrearPersona(usuario);
+        
+        
+        /*setidReciente();
         useremf.create(new Usuario(idReciente++,request.getParameter("correo"),
                 request.getParameter("password"),request.getParameter("nickname")));
         
@@ -256,6 +265,30 @@ public class ComenzarSesion extends HttpServlet {
             aux.setValor(false);
             calificaemf.create(aux);
         }
+        */
+        
+        response.setContentType("text/html;charset=UTF-8");        
+        
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Comenzar Sesión</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Comenzar Sesion at </h1>");
+            if( idUsuarioCreado > 0 ){                
+                out.println("<h1>ID USUARIO CREADO: " + idUsuarioCreado +"</h1>");
+                out.println("<h2>Usuario:  getCorreo " + usuario.getCorreo() +" getContraseña " + usuario.getContraseña()+" getNickname " + usuario.getNickname()+" </h2>" );
+            } else {
+                out.println("<h1>Error Creando usuario.</h1>");
+                
+            }
+            out.println("</body>");
+            out.println("</html>");
+        }
+        
         processRequest(request, response);
     }
 

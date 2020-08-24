@@ -17,11 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author USERS
+ * @author Eduwin
  */
-@WebServlet(name = "MeGusta", urlPatterns = {"/MeGusta"})
-public class MeGusta extends HttpServlet {
-    
+@WebServlet(name = "Iniciar", urlPatterns = {"/Iniciar"})
+public class Iniciar extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,21 +34,15 @@ public class MeGusta extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        UsuarioDAO personaDAO = new UsuarioDAO();
-        Usuario usuario = new Usuario();
-        usuario = personaDAO.buscarID(1);
-        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MeGusta</title>");            
+            out.println("<title>Servlet Iniciar</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MeGusta at </h1>");
-            out.println("<h2>Persona:  getCorreo " + usuario.getCorreo() +" getContraseña " + usuario.getContraseña()+" getNickname " + usuario.getNickname()+" </h2>" );
+            out.println("<h1>Servlet Iniciar at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,7 +60,6 @@ public class MeGusta extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
         processRequest(request, response);
     }
 
@@ -78,10 +71,65 @@ public class MeGusta extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+//        String correo = request.getParameter("correo");
+        String password = request.getParameter("password");
+        String nickname = request.getParameter("nickname");
+        
+        Usuario usuario = new Usuario();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+//        usuario.setCorreo(correo);
+        usuario.setContraseña(password);
+        usuario.setNickname(nickname);
+        
+        int idUsuarioCreado = usuarioDAO.CrearPersona(usuario);
+        
+        
+        /*setidReciente();
+        useremf.create(new Usuario(idReciente++,request.getParameter("correo"),
+                request.getParameter("password"),request.getParameter("nickname")));
+        
+        for(int i=0;i<5;i++){
+            Calificacion aux = new Calificacion(0,i);
+            aux.setValor(false);
+            calificaemf.create(aux);
+        }
+        */
+        
+        response.setContentType("text/html;charset=UTF-8");        
+        
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Iniciar</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Iniciar at </h1>");
             
+                    if("Eduwin".equals(nickname)&&"1234".equals(password)){
+            out.println("<h1>ID USUARIO CREADO: " + "Eduwin 1234" +"</h1>");
+
+                    }
+                    else{
+            out.println("<h1>ID USUARIO CREADO: " + "Erro al ingresar valores" +"</h1>");
+
+                    }
+     /*       if( idUsuarioCreado > 0 ){                
+                out.println("<h1>ID USUARIO CREADO: " + idUsuarioCreado +"</h1>");
+                out.println("<h2>Usuario:  getCorreo " + usuario.getCorreo() +" getContraseña " + usuario.getContraseña()+" getNickname " + usuario.getNickname()+" </h2>" );
+            } else {
+                out.println("<h1>Error Creando usuario.</h1>");
+                
+            }*/
+            out.println("</body>");
+            out.println("</html>");
+        }
+        
         processRequest(request, response);
     }
 

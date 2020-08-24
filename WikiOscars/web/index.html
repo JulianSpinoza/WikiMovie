@@ -110,35 +110,59 @@ and open the template in the editor.
             
         <footer>
             <table>
-                <tr>
-                    <td class="centrar"><label>Registrarme</label></td>
-                    <td class="centrar"><label>Iniciar Sesión</label></td>
-                </tr>
-                <tr>
-                    <td><label>Nickname: </label><input type="text" name="nickname"></td>
-                    <td><label>Nickname: </label><input type="text" name="nickname1"></td>
-                </tr>
-                <tr>
-                    <td><label>Correo: </label><input type="text" name="correo"></td>
-                    <td><label>Contraseña: </label><input type="text" name="password1"></td>
-                </tr>
-                <tr>
-                    <td><label>Contraseña: </label><input type="text" name="password"></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="centrar">
-                        <form action="IniciarSesion" method="post">
-                        <input type="submit" value="Registrarme">
-                        </form>
-                    </td>
-                    <td class="centrar">
-                        <form action="IniciarSesion" method="get">
-                        <input type="submit" value="Iniciar Sesión">
-                        </form>
-                    </td>
-                </tr>
+                <td>
+                    
+                    <form action="IniciarSesion" method="post">                    
+                        <table>
+                            <tr>
+                                <td class="centrar"><label>Registrarme</label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Nickname: </label><input type="text" name="nickname"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Correo: </label><input type="text" name="correo"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Contraseña: </label><input type="text" name="password"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <input type="submit" value="Registrarme">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </td>   
+                
+                
+                
+                
+                <td>
+                    
+                    <form action="Iniciar" method="post">                    
+                        <table>
+                            <tr>
+                                <td class="centrar"><label>Iniciar</label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Nickname: </label><input type="text" name="nickname"></td>
+                            </tr>
+
+                            <tr>
+                                <td><label>Contraseña: </label><input type="text" name="password"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <input type="submit" value="Iniciar">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </td> 
             </table>
+
+ 
         </footer>
             
         </div>
