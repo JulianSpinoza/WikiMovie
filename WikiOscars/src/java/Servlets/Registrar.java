@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author USERS
  */
-@WebServlet(name = "IniciarSesion", urlPatterns = {"/IniciarSesion"})
-public class ComenzarSesion extends HttpServlet {
+@WebServlet(name = "Registrar", urlPatterns = {"/Registrar"})
+public class Registrar extends HttpServlet {
   
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
