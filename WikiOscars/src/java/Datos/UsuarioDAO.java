@@ -19,6 +19,9 @@ import java.util.logging.Logger;
  * @author Eduwin
  */
 public class UsuarioDAO {
+    
+    public static ResultSet resultado;
+    
     private Usuario u;
     /*
     public void salvar(){
@@ -120,15 +123,13 @@ public class UsuarioDAO {
         return idUsuarioCreado;
     }
     
-    public int RetornarPersona(Usuario usuario){
-        int ultimoID = ObtenerUltimoIdUsuario();        
-        int idUsuarioCreado = 0;
-        if(ultimoID > 0 ){
-            idUsuarioCreado = ultimoID +1;
+    public void RetornarPersona(Usuario usuario){
+        
             Connection con = ConexionBD.devolverConexion();
             try {
                 Statement st = con.createStatement();
                 st.executeQuery("select * from Usuario where upper(Usuario.Nickname) like '%JOSE' AND UPPER (Usuario.Contraseña) like '%PELICULAS';");
+                
                 
                 
                                // while(rs.next()){
@@ -142,8 +143,7 @@ public class UsuarioDAO {
             } catch (SQLException ex) {
                 Logger.getLogger("BaseDeDatos.class.getName()").log(Level.SEVERE, null, ex);
             }        
-        }
-        return idUsuarioCreado;
+        
     }
     
     

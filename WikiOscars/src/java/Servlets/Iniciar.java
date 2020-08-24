@@ -85,7 +85,7 @@ public class Iniciar extends HttpServlet {
         usuario.setContraseña(password);
         usuario.setNickname(nickname);
         
-        int idUsuarioCreado = usuarioDAO.CrearPersona(usuario);
+        usuarioDAO.RetornarPersona(usuario);
         
         
         /*setidReciente();
