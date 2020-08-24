@@ -5,13 +5,13 @@
  */
 package Servlets;
 
-import Datos.UsuarioDAO;
 import service.CalificacionFacadeREST;
 import entity.Usuario;
 import service.UsuarioFacadeREST;
 import entity.Calificacion;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,30 +35,12 @@ public class ComenzarSesion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     public String correo,password,nickname;
-    public String invisible[][] = new String [2][1];
-    public static int idReciente;
+    public String invisible[][] = new String [2][5];
+    public static int idReciente=0;
         
     public UsuarioFacadeREST useremf = new UsuarioFacadeREST();
     public CalificacionFacadeREST calificaemf = new CalificacionFacadeREST();
-    
-    public int comprobar(String comprocorreo,String compropassword){
-              int a=0;
-              for(int i=1;i<=useremf.count();i++){
-                  Usuario user = new Usuario(i);
-                  
-                  if(comprocorreo==user.getCorreo()&&compropassword==user.getContraseña()){
-                     a=i;  
-                  }
-              }
-              return a;   
-    }
-    
-    public void setidReciente(){
-        idReciente =(useremf.count());
-    }
-     
-      
-      
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -76,6 +58,9 @@ public class ComenzarSesion extends HttpServlet {
             out.println("<div class=\"vacio\">");
             out.println("<div id=\"logo\">");
             out.println("</div>");
+            out.println("<div id=\"menu\">");
+            out.println("<label>"+nickname+"</label>");
+            out.println("</div>");
             out.println("</div>");
             out.println("<div class=\"contenedor\">  ");
             out.println("<section>");
@@ -84,12 +69,15 @@ public class ComenzarSesion extends HttpServlet {
             out.println("</h2>");
             out.println("<article>");
             out.println("<h3>");
-            out.println("nce Upon a Time in Hollywood");
+            out.println("Once Upon a Time in Hollywood");
             out.println("</h3>");
             out.println("<p id=\"imagen1\">");
             out.println("</p>");
             out.println("<form action=\"MeGusta\" method=\"post\">");
-            out.println("<input type=\"submit\" value=\"Me gusta Once Upon a Time in Hollywood\" name=\"OUTH\">");
+            out.println("<input type=\""+invisible[0][0]+"\" value=\"Me gusta Once Upon a Time in Hollywood\" name=\"OUTHlike\">");
+            out.println("</form>");
+            out.println("<form action=\"MeGusta\" method=\"get\">");
+            out.println("<input type=\""+invisible[1][0]+"\" value=\"Ya no me gusta Once Upon a Time in Hollywood\" name=\"OUTHdislike\">");
             out.println("</form>");
             out.println("<h4>");
             out.println("Sinopsis");
@@ -106,7 +94,10 @@ public class ComenzarSesion extends HttpServlet {
             out.println("<p id=\"imagen2\">");
             out.println("</p>");
             out.println("<form action=\"MeGusta\" method=\"post\">");
-            out.println("<input type=\"submit\" value=\"Me gusta Jojo Rabbit\" name=\"JORT\">");
+            out.println("<input type=\""+invisible[0][1]+"\" value=\"Me gusta Jojo Rabbit\" name=\"JORTlike\">");
+            out.println("</form>");
+            out.println("<form action=\"MeGusta\" method=\"get\">");
+            out.println("<input type=\""+invisible[1][1]+"\" value=\"Me gusta Jojo Rabbit\" name=\"JORTdislike\">");
             out.println("</form>");
             out.println("<h4>");
             out.println("Sinopsis");
@@ -123,7 +114,10 @@ public class ComenzarSesion extends HttpServlet {
             out.println("<p id=\"imagen3\">");
             out.println("</p>");
             out.println("<form action=\"MeGusta\" method=\"post\">");
-            out.println("<input type=\"submit\" value=\"Me gusta Marriage Story\" name=\"MS\">");
+            out.println("<input type=\""+invisible[0][2]+"\" value=\"Me gusta Marriage Story\" name=\"MSlike\">");
+            out.println("</form>");
+            out.println("<form action=\"MeGusta\" method=\"get\">");
+            out.println("<input type=\""+invisible[1][2]+"\" value=\"Me gusta Marriage Story\" name=\"MSdislike\">");
             out.println("</form>");
             out.println("<h4>");
             out.println("Sinopsis");
@@ -140,7 +134,10 @@ public class ComenzarSesion extends HttpServlet {
             out.println("<p id=\"imagen4\">");
             out.println("</p>");
             out.println("<form action=\"MeGusta\" method=\"post\">");
-            out.println("<input type=\"submit\" value=\"Me gusta The Irishman\" name=\"IRIS\">");
+            out.println("<input type=\""+invisible[0][3]+"\" value=\"Me gusta The Irishman\" name=\"IRISlike\">");
+            out.println("</form>");
+            out.println("<form action=\"MeGusta\" method=\"get\">");
+            out.println("<input type=\""+invisible[1][3]+"\" value=\"Me gusta The Irishman\" name=\"IRISdislike\">");
             out.println("</form>");
             out.println("<h4>");
             out.println("Sinopsis");
@@ -158,7 +155,10 @@ public class ComenzarSesion extends HttpServlet {
             out.println("<p id=\"imagen5\">");
             out.println("</p>");
             out.println("<form action=\"MeGusta\" method=\"post\">");
-            out.println("<input type=\"submit\" value=\"Me gusta Parasite\" name=\"PARIS\">");
+            out.println("<input type=\""+invisible[0][4]+"\" value=\"Me gusta Parasite\" name=\"PARISlike\">");
+            out.println("</form>");
+            out.println("<form action=\"MeGusta\" method=\"post\">");
+            out.println("<input type=\""+invisible[1][4]+"\" value=\"Me gusta Parasite\" name=\"PARISdislike\">");
             out.println("</form>");
             out.println("<h4>");
             out.println("Sinopsis");
@@ -168,39 +168,6 @@ public class ComenzarSesion extends HttpServlet {
             out.println("</p>");
             out.println("</article>");
             out.println("</section>");
-
-            out.println("<footer>");
-            out.println("<table>");
-            out.println("<tr>");
-            out.println("<td class=\"centrar\"><label>Registrarme</label></td>");
-            out.println("<td class=\"centrar\"><label>Iniciar Sesión</label></td>");
-            out.println("</tr>");
-            out.println("<tr>");
-            out.println("<td><label>Nickname: </label><input type=\"text\"></td>");
-            out.println("<td><label>Nickname: </label><input type=\"text\"></td>");
-            out.println("</tr>");
-            out.println("<tr>");
-            out.println("<td><label>Correo: </label><input type=\"text\"></td>");
-            out.println("<td><label>Contraseña: </label><input type=\"text\"></td>");
-            out.println("</tr>");
-            out.println("<tr>");
-            out.println("<td><label>Contraseña: </label><input type=\"text\"></td>");
-            out.println("<td></td>");
-            out.println("</tr>");
-            out.println("<tr>");
-            out.println("<td class=\"centrar\">");
-            out.println("<form action=\"IniciarSesion\" method=\"post\">");
-            out.println("<input type=\"submit\" value=\"Registrarme\">");
-            out.println("</form>");
-            out.println("</td>");
-            out.println("<td class=\"centrar\">");
-            out.println("<form action=\"IniciarSesion\" method=\"get\">");
-            out.println("<input type=\"submit\" value=\"Iniciar Sesión\">");
-            out.println("</form>");
-            out.println("</td>");
-            out.println("</tr>");
-            out.println("</table>");
-            out.println("</footer>");
 
             out.println("</div>");
             out.println("</body>");
@@ -221,12 +188,30 @@ public class ComenzarSesion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            password=request.getParameter("password");
-            nickname=request.getParameter("nickname");
-            
-            
-
+        
+        password = request.getParameter("password");
+        nickname = request.getParameter("nickname");
+        
+        if(comprobar(nickname,password)==0){
+            //colocar processRequest de error
+        }else{
+ 
+        Usuario aux = useremf.find(comprobar(nickname,password));
+        ArrayList<Calificacion> listaCalificados = (ArrayList<Calificacion>) aux.getCalificacionList();
+        
+        for(int i=0;i<listaCalificados.size();i++){
+            if(listaCalificados.get(i).getValor() == false){
+                invisible[0][i]="submit";
+                invisible[1][i]="hidden";
+            }
+            if(listaCalificados.get(i).getValor() == true){
+                invisible[0][i]="hidden";
+                invisible[1][i]="submit";
+            }
+        }
         processRequest(request, response);
+        }
+         
     }
 
     /**
@@ -241,55 +226,27 @@ public class ComenzarSesion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String correo = request.getParameter("correo");
-        String password = request.getParameter("password");
-        String nickname = request.getParameter("nickname");
+        correo = request.getParameter("correo");
+        password = request.getParameter("password");
+        nickname = request.getParameter("nickname");
+        setidReciente();
+        Usuario user = new Usuario(idReciente++,correo, password, nickname);
+        useremf.create(user);
+//        
+//        for(int i=0;i<5;i++){
+//            Calificacion aux = new Calificacion(0,i);
+//            aux.setValor(false);
+//            aux.setIidUsuariofk(user);
+//            calificaemf.create(aux);
+//        }
+//        
+//        for(int j=0;j<5;j++){
+//            invisible[0][j] = "submit";
+//            invisible[1][j] = "hidden";
+//        }
         
-        
-        
-        Usuario usuario = new Usuario();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuario.setCorreo(correo);
-        usuario.setContraseña(password);
-        usuario.setNickname(nickname);
-        
-        int idUsuarioCreado = usuarioDAO.CrearPersona(usuario);
-        
-        
-        /*setidReciente();
-        useremf.create(new Usuario(idReciente++,request.getParameter("correo"),
-                request.getParameter("password"),request.getParameter("nickname")));
-        
-        for(int i=0;i<5;i++){
-            Calificacion aux = new Calificacion(0,i);
-            aux.setValor(false);
-            calificaemf.create(aux);
-        }
-        */
-        
-        response.setContentType("text/html;charset=UTF-8");        
-        
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Comenzar Sesión</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Comenzar Sesion at </h1>");
-            if( idUsuarioCreado > 0 ){                
-                out.println("<h1>ID USUARIO CREADO: " + idUsuarioCreado +"</h1>");
-                out.println("<h2>Usuario:  getCorreo " + usuario.getCorreo() +" getContraseña " + usuario.getContraseña()+" getNickname " + usuario.getNickname()+" </h2>" );
-            } else {
-                out.println("<h1>Error Creando usuario.</h1>");
-                
-            }
-            out.println("</body>");
-            out.println("</html>");
-        }
-        
-        processRequest(request, response);
+//        processRequest(request, response);
+        prueba(request, response,request.getParameter("correo"),request.getParameter("password"),request.getParameter("nickname"));
     }
 
     /**
@@ -302,4 +259,50 @@ public class ComenzarSesion extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    //Methods
+    public void prueba(HttpServletRequest request, HttpServletResponse response,String correo, String password, String nickname)
+            throws ServletException, IOException{
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");            
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Oscars</title>");
+            out.println("<meta charset=\"UTF-8\">");
+            out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
+            out.println("<link rel=\"stylesheet\" href=\"Estilos/PrincipalPage.css\">");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<div class=\"vacio\">");
+            out.println("<div id=\"logo\">");
+            out.println("</div>");
+            out.println("<div id=\"menu\">");
+            out.println("<label>"+nickname+"</label>");
+            out.println("</div>");
+            out.println("</div>");
+            out.println("<div class=\"contenedor\">  ");
+            
+            out.println(correo+","+ password);
+            
+            out.println("</div>");
+            out.println("</body>");
+            out.println("</html>");
+    }
+    }
+    public int comprobar(String compronick,String compropassword){
+              int a=0;
+              for(int i=1;i<=useremf.count();i++){
+                  Usuario user = new Usuario(i);
+                  
+                  if((compronick.equals(user.getNickname())) && (compropassword.equals(user.getContraseña()))){
+                     a=i;  
+                  }
+              }
+              return a;   
+    }
+    
+    public void setidReciente(){
+        idReciente =(useremf.count());
+    }
 }
