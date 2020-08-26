@@ -83,8 +83,6 @@ public class CrearCalificacion extends HttpServlet {
         String nickname = request.getParameter("nickname");
         int peliculaid = Integer.parseInt(request.getParameter("peliculaid"));
 
-        //  Pelicula pelicula = new Pelicula();
-        // PeliculasDAO peliculasDAO = new PeliculasDAO();
         Calificacion calificacion = new Calificacion();
         CalificacionPK calificacionPK = new CalificacionPK();
         CalificacionDAO calificacionDAO = new CalificacionDAO();

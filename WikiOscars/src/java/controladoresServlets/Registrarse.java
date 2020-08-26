@@ -6,14 +6,11 @@
 package controladoresServlets;
 
 import modelo.logicaBaseDeDatos.Html;
-import modelo.logicaBaseDeDatos.PeliculasDAO;
 import modelo.entity.Usuario;
 import modelo.logicaBaseDeDatos.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -105,9 +102,8 @@ public class Registrarse extends HttpServlet {
                 out.println(html.inicial("El correo y/o Nickname ya fue usado por otro usuario registrado"));
             }
         } else {
-            //          
 
-            int idUsuarioCreado = usuarioDAO.CrearPersona(usuario);
+            usuarioDAO.CrearPersona(usuario);
 
             response.setContentType("text/html;charset=UTF-8");
 
@@ -118,14 +114,6 @@ public class Registrarse extends HttpServlet {
             }
         }
     }
-
-//        processRequest(request, response);
-//        correo = request.getParameter("correo");
-//        password = request.getParameter("password");
-//        nickname = request.getParameter("nickname");
-//        Usuario user = new Usuario(idReciente++, correo, password, nickname);
-//
-//        prueba(request, response, request.getParameter("correo"), request.getParameter("password"), request.getParameter("nickname"));
     /**
      * Returns a short description of the servlet.
      *

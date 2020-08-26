@@ -21,9 +21,6 @@ public class UsuarioDAO {
 
     public static ResultSet resultado;
 
-    private Usuario u;
-
-
     public int ObtenerUltimoIdUsuario() {
         Connection con = ConexionBD.devolverConexion();
         Usuario usuario = new Usuario();
@@ -44,7 +41,7 @@ public class UsuarioDAO {
 
     }
 
-    public int CrearPersona(Usuario usuario) {
+    public void CrearPersona(Usuario usuario) {
         int ultimoID = ObtenerUltimoIdUsuario();
         int idUsuarioCreado = 0;
         if (ultimoID > 0) {
@@ -58,7 +55,7 @@ public class UsuarioDAO {
                 Logger.getLogger("BaseDeDatos.class.getName()").log(Level.SEVERE, null, ex);
             }
         }
-        return idUsuarioCreado;
+
     }
 
     public int VerificarPersona(Usuario usuario) throws SQLException {

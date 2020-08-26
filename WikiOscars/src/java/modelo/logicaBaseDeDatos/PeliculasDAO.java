@@ -5,9 +5,6 @@
  */
 package modelo.logicaBaseDeDatos;
 
-import modelo.entity.Calificacion;
-import modelo.entity.Pelicula;
-import modelo.entity.Usuario;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

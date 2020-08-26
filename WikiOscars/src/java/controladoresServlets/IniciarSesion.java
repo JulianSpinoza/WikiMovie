@@ -107,7 +107,6 @@ public class IniciarSesion extends HttpServlet {
             
 
             ArrayList<Integer> peliculasMeGusta = peliculasDAO.ObtenerPeliculasPorLoginUsuario(nickname);
-            ArrayList<Integer> cantidadCalificacion = peliculasDAO.ObtenerPeliculasPorLoginUsuario(nickname);
                     
             CalificacionDAO caificacionDAO = new CalificacionDAO();
             int totalCalificacion1 = caificacionDAO.CantidadCalificacion(1);
@@ -118,8 +117,7 @@ public class IniciarSesion extends HttpServlet {
 
             if (retorno == 1) {
                 out.println(html.pantalla(peliculasMeGusta, nickname, totalCalificacion1, totalCalificacion2, totalCalificacion3, totalCalificacion4, totalCalificacion5));
-            } else {
-                //          
+            } else {        
                 out.println(html.inicial("Usuario o contraseña invalidos"));
             }
 
