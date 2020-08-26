@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlets;
+package controladoresServlets;
 
-import Datos.UsuarioDAO;
-import entity.Usuario;
+import modelo.logicaBaseDeDatos.CalificacionDAO;
+import modelo.logicaBaseDeDatos.Html;
+import modelo.logicaBaseDeDatos.PeliculasDAO;
+import modelo.entity.Calificacion;
+import modelo.entity.CalificacionPK;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +23,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Eduwin
  */
-@WebServlet(name = "Iniciar", urlPatterns = {"/Iniciar"})
-public class Iniciar extends HttpServlet {
+@WebServlet(name = "CrearCalificacion", urlPatterns = {"/CrearCalificacion"})
+public class CrearCalificacion extends HttpServlet {
+
+    Html html = new Html();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +45,10 @@ public class Iniciar extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Iniciar</title>");            
+            out.println("<title>Servlet Calificaciones</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Iniciar at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Calificaciones at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,65 +77,45 @@ public class Iniciar extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-//        String correo = request.getParameter("correo");
-        String password = request.getParameter("password");
         String nickname = request.getParameter("nickname");
-        
-        Usuario usuario = new Usuario();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-//        usuario.setCorreo(correo);
-        usuario.setContraseña(password);
-        usuario.setNickname(nickname);
-        
-        usuarioDAO.RetornarPersona(usuario);
-        
-        
-        /*setidReciente();
-        useremf.create(new Usuario(idReciente++,request.getParameter("correo"),
-                request.getParameter("password"),request.getParameter("nickname")));
-        
-        for(int i=0;i<5;i++){
-            Calificacion aux = new Calificacion(0,i);
-            aux.setValor(false);
-            calificaemf.create(aux);
-        }
-        */
-        
-        response.setContentType("text/html;charset=UTF-8");        
-        
+        int peliculaid = Integer.parseInt(request.getParameter("peliculaid"));
+
+        //  Pelicula pelicula = new Pelicula();
+        // PeliculasDAO peliculasDAO = new PeliculasDAO();
+        Calificacion calificacion = new Calificacion();
+        CalificacionPK calificacionPK = new CalificacionPK();
+        CalificacionDAO calificacionDAO = new CalificacionDAO();
+
+        int calificacionid = calificacionDAO.ObtenerUltimaCalificacion() + 1;
+
+        calificacionPK.setIdCalificacion(calificacionid);
+        calificacionPK.setIdPeliculafk(peliculaid);
+
+        calificacionDAO.CrearCalificacion(calificacion, calificacionPK, nickname);
+       
+        int totalPelicula1=calificacionDAO.CantidadCalificacion(1);
+        int totalPelicula2=calificacionDAO.CantidadCalificacion(2);
+        int totalPelicula3=calificacionDAO.CantidadCalificacion(3);
+        int totalPelicula4=calificacionDAO.CantidadCalificacion(4);
+        int totalPelicula5=calificacionDAO.CantidadCalificacion(5);
+
+
+
+
+        response.setContentType("text/html;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Iniciar</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Iniciar at </h1>");
-            
-                    if("Eduwin".equals(nickname)&&"1234".equals(password)){
-            out.println("<h1>ID USUARIO CREADO: " + "Eduwin 1234" +"</h1>");
 
-                    }
-                    else{
-            out.println("<h1>ID USUARIO CREADO: " + "Erro al ingresar valores" +"</h1>");
+            PeliculasDAO peliculasDAO = new PeliculasDAO();
 
-                    }
-     /*       if( idUsuarioCreado > 0 ){                
-                out.println("<h1>ID USUARIO CREADO: " + idUsuarioCreado +"</h1>");
-                out.println("<h2>Usuario:  getCorreo " + usuario.getCorreo() +" getContraseña " + usuario.getContraseña()+" getNickname " + usuario.getNickname()+" </h2>" );
-            } else {
-                out.println("<h1>Error Creando usuario.</h1>");
-                
-            }*/
-            out.println("</body>");
-            out.println("</html>");
+            ArrayList<Integer> peliculasMeGusta = peliculasDAO.ObtenerPeliculasPorLoginUsuario(nickname);
+            out.println(html.pantalla(peliculasMeGusta, nickname, totalPelicula1, totalPelicula2, totalPelicula3, totalPelicula4, totalPelicula5));
         }
-        
+
         processRequest(request, response);
     }
 
